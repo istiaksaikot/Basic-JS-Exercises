@@ -18,7 +18,7 @@ function areaTriangle(base, height) {
 console.log("Triangle Area Calculator:");
 /* Uncomment the following to check */
   console.log(areaTriangle(2, 7));
-   console.log(areaTriangle(20, 56.5));
+   console.log(areaTriangle(20, 56));
    console.log(areaTriangle(50, 34));
 
 
@@ -55,8 +55,8 @@ function rotate_string(text) {
 
 console.log("Rotate String:");
 /* Uncomment the following to check */
-  rotate_string("cat");
-  rotate_string("voracious")
+ console.log rotate_string("cat");
+  console.log rotate_string("varacious")
 
 
 
@@ -76,16 +76,18 @@ Output:
 HINT: Use split() and substring()
 
  --------------------------- */
-
-function protect_email(email) {
-  return "protected email";
+ function protect_email(email) {
+  var splitarr = email.split("@");
+  var part1 = splitarr[0];
+  var part2 = splitarr[1];
+  part1 = part1.substring(0,(part1.length-(part1.length/2)));
+  return part1 + "...@" + part2;
 }
 
 console.log("Protected email:");
 /* Uncomment the following to check */
-  //console.log(protect_email("harry_potter@gmail.com"));
-  //console.log(protect_email("sarah.connor@gmail.com"));
-
+  console.log(protect_email("harry_potter@gmail.com"));
+  console.log(protect_email("sarah.connor@gmail.com"));
 
 
 /* ---------------------------
@@ -103,14 +105,16 @@ abeemrstw
 HINT: Use join(), split() and sort() functions
  --------------------------- */
 
-function alphabetic_order(word) {
-  return "rearranged word";
+ function alphabetic_order(word) {
+  var splittedword = word.split("");
+  var arrangedword = splittedword.sort();
+  return arrangedword.join("");
 }
 
 console.log("Alphabetic Order:");
 /* Uncomment the following to check */
-  // console.log(alphabetic_order("webmaster"));
-  // console.log(alphabetic_order("textbook"));
+  console.log(alphabetic_order("webmaster"));
+  console.log(alphabetic_order("textbook"));
 
 
 
@@ -129,13 +133,27 @@ Output:
 
  --------------------------- */
 
-function remove_duplicates(arr) {
-  console.log("Duplicates removed from array");
+  function remove_duplicates(arr) {
+  var updatedarr = [];
+  for(var i=0; i<arr.length; i++){
+    for(var j=i+1; j<arr.length; j++){
+      if(arr[i]===arr[j]){
+        delete arr[j];
+      }
+    }
+  }
+  var c=0;
+  for(var k=0; k<arr.length; k++){
+    if(arr[k]!=null){
+      updatedarr[c++]=arr[k];
+    }
+  }
+  return updatedarr.join();
 }
 
 console.log("Remove Duplicate Values:");
 /* Uncomment the following to check */
-  // remove_duplicates([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
+  console.log(remove_duplicates([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]));
 
 
 /* ---------------------------
@@ -153,8 +171,22 @@ Output:
 HINT: Use toString() and parseInt() functions
  --------------------------- */
 
-function dash_in_odd(number) {
-  console.log("odd numbers separated by dashes");
+ function dash_in_odd(number) {
+  var str = number.toString();
+  var result = [str[0]];
+
+  for(var i=1; i<str.length; i++)
+    {
+      if((str[i-1]%2 != 0) && (str[i]%2 != 0))
+       {
+        result.push('-', str[i]);
+       }
+      else
+       {
+        result.push(str[i]);
+       }
+    }
+  console.log(result.join(''));
 }
 
 console.log("Dash between ODD Numbers:");
@@ -177,12 +209,20 @@ HINT: Use Math.ceil() and Math.random()
 
  --------------------------- */
 
-function guessing_game(guess) {
-  // Get a random integer from 1 to 10 inclusive
+ function guessing_game(guess) {
   console.log("matched or unmatched?");
+  var num = Math.ceil(Math.random()*10);
+  if (guess == num){
+    alert('Matched');
+  }
+    else{
+      alert('Not matched, the number was '+ num);
+    }
 }
-
-console.log("Guessing Game:");
+console.log("Guessing Game: ");
+var guess = prompt('Guess the number between 1 and 10 inclusive');
+console.log("User guessed: "+ guess);
+guessing_game(guess);
 /* Uncomment the following to check */
   // var guess = prompt('Guess the number between 1 and 10 inclusive');
   // console.log("User guessed: "+ guess);
